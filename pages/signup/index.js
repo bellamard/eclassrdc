@@ -65,7 +65,7 @@ const Singup = ({navigation}) => {
                 value={UserName}
                 minLength={3}
               />
-              <MyPicker itemsSelect={School} />
+              <MyPicker itemsSelect={school} />
             </View>
           </View>
         </View>
