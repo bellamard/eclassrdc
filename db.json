@@ -57,9 +57,9 @@
       "postId": 1
     }
   ],
-  "user": {
+ "user": [{
     "id": 1,
     "username": "admin",
     "password": "123456"
-  }
+  }]
 }
