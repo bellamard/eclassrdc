@@ -11,6 +11,7 @@ import {
   Alert,
 } from 'react-native';
 import Styles from './style';
+import axios from 'axios';
 
 const Login = ({navigation}) => {
   useEffect(() => {
@@ -40,14 +41,33 @@ const Login = ({navigation}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const checkacess = () => {
-    if (UserName === 'Admin' && Password === '123456') {
-      navigation.navigate('Dashboard');
-      setIsError(false);
-    } else {
-      setIsError(true);
-    }
-    setUsername('');
-    setPassword('');
+    setIsLoading(true);
+    const user = UserName;
+    const pwd = Password;
+    const url = `https://my-json-server.typicode.com/bellamard/eclassrdc/user?username=${user}&password=${pwd}`;
+    axios
+      .get(url)
+      .then(res => res.data)
+      .then(data => {
+        navigation.navigate('Dashboard');
+        if (data.length > 0) {
+          setIsLoading(false);
+          navigation.navigate('Dashboard');
+        } else {
+          console.log(url);
+          setUsername('');
+          setPassword('');
+          setIsLoading(false);
+          setIsError(true);
+        }
+      })
+      .catch(err => {
+        setUsername('');
+        setPassword('');
+        setIsError(true);
+        setIsLoading(false);
+        console.warn(err);
+      });
   };
 
   return (
@@ -95,6 +115,9 @@ const Login = ({navigation}) => {
                 <TouchableOpacity onPress={() => navigation.navigate('Singup')}>
                   <Text style={Styles.signe}>Créer un compte</Text>
                 </TouchableOpacity>
+                {isError ? (
+                  <Text style={{color: 'red'}}>Erreur d'authentification</Text>
+                ) : null}
               </View>
             </View>
           )}

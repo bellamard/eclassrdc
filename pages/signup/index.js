@@ -18,7 +18,78 @@ import axios from 'axios';
 
 const Singup = ({navigation}) => {
   const [UserName, setUsername] = useState('');
-  const school = () => {};
+  const [Schools, setSchools] = useState(['']);
+  const [Sections, setSections] = useState(['']);
+  const [Options, setOptions] = useState(['']);
+  const [Loading, setLoading] = useState(false);
+  const [MyClass, setMyClass] = useState('');
+
+  const myclass = () => {
+    axios
+      .get(
+        'https://my-json-server.typicode.com/bellamard/eclassrdc/ecole?title',
+      )
+      .then(res => res.data)
+      .then(data => {
+        setMyClass(
+          data.map(item => {
+            return item;
+          }),
+        );
+      })
+      .catch(err => console.warn(err));
+  };
+
+  const option = () => {
+    axios
+      .get(
+        'https://my-json-server.typicode.com/bellamard/eclassrdc/ecole?title',
+      )
+      .then(res => res.data)
+      .then(data => {
+        setOptions(
+          data.map(item => {
+            return item;
+          }),
+        );
+      })
+      .catch(err => console.warn(err));
+  };
+
+  const section = () => {
+    axios
+      .get(
+        'https://my-json-server.typicode.com/bellamard/eclassrdc/ecole?title',
+      )
+      .then(res => res.data)
+      .then(data => {
+        setSections(
+          data.map(item => {
+            return item;
+          }),
+        );
+      })
+      .catch(err => console.warn(err));
+  };
+  const school = () => {
+    axios
+      .get('https://my-json-server.typicode.com/bellamard/eclassrdc/ecole')
+      .then(res => res.data)
+      .then(data =>
+        setSchools(
+          data.map(item => {
+            return item;
+          }),
+        ),
+      )
+      .catch(err => console.warn(err));
+  };
+
+  useEffect(() => {
+    option();
+    school();
+    section();
+  }, []);
 
   return (
     <ImageBackground
@@ -65,7 +136,29 @@ const Singup = ({navigation}) => {
                 value={UserName}
                 minLength={3}
               />
-              <MyPicker itemsSelect={school} />
+              <MyPicker itemsSelect={Schools} />
+              <MyPicker itemsSelect={Sections} />
+              <MyPicker itemsSelect={Options} />
+              <MyPicker itemsSelect={MyClass} />
+              <TextInput
+                style={Styles.input}
+                placeholder="Nom d'utilisateur"
+                label={"Nom d'utilisateur"}
+                onChange={setUsername}
+                value={UserName}
+                minLength={3}
+              />
+              <TextInput
+                style={Styles.input}
+                placeholder="Email"
+                label={'E-mail'}
+                onChange={setUsername}
+                value={UserName}
+                minLength={3}
+              />
+              <TouchableOpacity onPress={() => alert('enregistrement')}>
+                <Text style={Styles.button}>S'enregistre</Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
