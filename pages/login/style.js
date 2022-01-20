@@ -45,5 +45,20 @@ const Styles = StyleSheet.create({
   boxLogin: {
     width: '100%',
   },
+  button: {
+    marginTop: 20,
+    width: '100%',
+    height: 50,
+    backgroundColor: '#009efb',
+    textAlign: 'center',
+    textAlignVertical: 'center',
+    fontSize: 20,
+    letterSpacing: 0.05,
+    borderRadius: 5,
+    color: '#fff',
+  },
+  signe: {
+    color: '#009efb',
+  },
 });
 export default Styles;

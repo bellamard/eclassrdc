@@ -1,10 +1,55 @@
-import React, {useState} from 'react';
-import {View, Text, Image, ImageBackground, TextInput} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {
+  View,
+  Text,
+  Image,
+  ImageBackground,
+  TextInput,
+  TouchableOpacity,
+  ActivityIndicator,
+  BackHandler,
+  Alert,
+} from 'react-native';
 import Styles from './style';
 
 const Login = ({navigation}) => {
+  useEffect(() => {
+    const backAction = () => {
+      Alert.alert('Quitter', 'Êtes-vous sûr de vouloir quitter ?', [
+        {
+          text: 'Cancel',
+          onPress: () => null,
+          style: 'cancel',
+        },
+        {text: 'YES', onPress: () => BackHandler.exitApp()},
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
+
   const [UserName, setUsername] = useState('');
   const [Password, setPassword] = useState('');
+  const [Remember, setRemember] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const checkacess = () => {
+    if (UserName === 'Admin' && Password === '123456') {
+      navigation.navigate('Dashboard');
+      setIsError(false);
+    } else {
+      setIsError(true);
+    }
+    setUsername('');
+    setPassword('');
+  };
+
   return (
     <ImageBackground
       source={require('../../images/bglaunch.jpeg')}
@@ -15,24 +60,44 @@ const Login = ({navigation}) => {
             source={require('../../images/logos.png')}
             style={Styles.logo}
           />
-          <View style={Styles.boxLogin}>
-            <Text style={Styles.title}>Login</Text>
-            <TextInput
-              style={Styles.input}
-              placeholder="Nom utilisateur"
-              label={'Nom utilisateur'}
-              onChange={setUsername}
-              value={UserName}
-            />
-            <TextInput
-              style={Styles.input}
-              placeholder="Mot de passe"
-              label={'Mot de passe'}
-              onChange={setPassword}
-              value={Password}
-              secureTextEntry={true}
-            />
-          </View>
+          {isLoading ? (
+            <ActivityIndicator size="large" color="#0000ff" />
+          ) : (
+            <View style={Styles.boxLogin}>
+              <TextInput
+                style={Styles.input}
+                placeholder="Nom utilisateur"
+                label={'Nom utilisateur'}
+                onChange={setUsername}
+                value={UserName}
+                minLength={3}
+              />
+              <TextInput
+                style={Styles.input}
+                placeholder="Mot de passe"
+                label={'Mot de passe'}
+                onChange={setPassword}
+                value={Password}
+                secureTextEntry={true}
+                minLength={6}
+              />
+              <View style={Styles.checkbox}>
+                <TouchableOpacity onPress={() => alert('test')}>
+                  <Text style={Styles.checkBox}>Se souvenir de moi</Text>
+                </TouchableOpacity>
+              </View>
+
+              <TouchableOpacity onPress={() => checkacess()}>
+                <Text style={Styles.button}>SE CONNECTER</Text>
+              </TouchableOpacity>
+              <View>
+                <Text>Vous n'avez pas de compte?</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Singup')}>
+                  <Text style={Styles.signe}>Créer un compte</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
         </View>
       </View>
     </ImageBackground>

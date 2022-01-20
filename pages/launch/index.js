@@ -25,7 +25,7 @@ const Launch = ({navigation}) => {
               Meilleure plateforme pour l'enseignement en ligne.
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-              <Text style={Styles.button}>Se connecter</Text>
+              <Text style={Styles.button}>SE CONNECTER</Text>
             </TouchableOpacity>
           </View>
         </View>
