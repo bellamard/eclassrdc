@@ -1,10 +1,19 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
+import Styles from './style';
 
-const Header = () => {
+const Header = ({navigation}) => {
+  const openMenu = () => {
+    navigation.openDrawer();
+  };
   return (
-    <View>
-      <Text>Header</Text>
+    <View style={Styles.container}>
+      <TouchableOpacity
+        onPress={() => {
+          console.log('openMenu');
+        }}>
+        <Image source={require('../images/menu.png')} style={Styles.menu} />
+      </TouchableOpacity>
     </View>
   );
 };
