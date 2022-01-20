@@ -1,0 +1,62 @@
+{
+  "ecole": [
+    {
+      "id": 1,
+      "title": "mpiko",
+      "section": [
+        {
+          "name": "Scien"
+        },
+        {
+          "name": "peda"
+        },
+        {
+          "name": "litt"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "title": "Kabambare",
+      "section": [
+        {
+          "name": "Scien"
+        },
+        {
+          "name": "peda"
+        },
+        {
+          "name": "litt"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Bokeleale",
+      "section": [
+        {
+          "name": "Scien"
+        },
+        {
+          "name": "peda"
+        },
+        {
+          "name": "litt"
+        }
+      ]
+    }
+    
+    
+   
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
