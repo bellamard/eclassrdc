@@ -13,8 +13,8 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Launch from './pages/launch';
 import Login from './pages/login';
 import Signup from './pages/signup';
-import Dashboard from './routes/LaunchRoute';
-import Header from './componnents/header';
+import Dashboard from './pages/dashboard';
+
 const Stack = createNativeStackNavigator();
 
 const App = () => {
@@ -40,7 +40,7 @@ const App = () => {
         <Stack.Screen
           name="Dashboard"
           component={Dashboard}
-          navigationOptions={Header}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>
