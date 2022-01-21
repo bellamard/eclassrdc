@@ -27,8 +27,6 @@ const Styles = StyleSheet.create({
   },
   header: {
     flexDirection: 'row',
-    paddingVertical: 5,
-    paddingHorizontal: 5,
     justifyContent: 'space-between',
     shadowColor: '#000',
     shadowOffset: {
@@ -36,7 +34,7 @@ const Styles = StyleSheet.create({
       height: 1,
     },
     shadowOpacity: 0.15,
-    shadowRadius: 3.84,
+    shadowRadius: 1.84,
     elevation: 2,
   },
   headerbox: {
