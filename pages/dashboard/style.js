@@ -25,6 +25,37 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
+  header: {
+    flexDirection: 'row',
+    paddingVertical: 5,
+    paddingHorizontal: 5,
+    justifyContent: 'space-between',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.15,
+    shadowRadius: 3.84,
+    elevation: 2,
+  },
+  headerbox: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: 5,
+  },
+  userHeaders: {
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    borderWidth: 1,
+    borderColor: 'white',
+    marginLeft: 5,
+  },
+  logosHeaders: {
+    width: 40,
+    height: 50,
+  },
 });
 
 export default Styles;
