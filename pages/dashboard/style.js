@@ -29,12 +29,13 @@ const Styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     shadowColor: '#000',
+    borderBottomWidth: 0.5,
     shadowOffset: {
       width: 0,
       height: 1,
     },
     shadowOpacity: 0.15,
-    shadowRadius: 1.84,
+    shadowRadius: 3.84,
     elevation: 2,
   },
   headerbox: {
@@ -53,6 +54,20 @@ const Styles = StyleSheet.create({
   logosHeaders: {
     width: 40,
     height: 50,
+  },
+  body: {
+    marginHorizontal: 10,
+    padding: 25,
+  },
+  bodyBox: {
+    width: '100%',
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.125)',
+  },
+  logoHome: {
+    width: 180,
+    height: 220,
   },
 });
 

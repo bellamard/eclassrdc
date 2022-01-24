@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import {
   View,
   Text,
@@ -30,11 +30,45 @@ const backAction = () => {
   ]);
   return true;
 };
-const ItemsTab = ({current, setCurrent, title, icon}) => {
+const ItemsTab = ({
+  current,
+  setCurrent,
+  title,
+  icon,
+  setShowMenu,
+  showMenu,
+  scaleValue,
+  closeButtonOffset,
+  offsetValue,
+}) => {
+  const actionNavigation = () => {
+    setCurrent(title);
+    Animated.timing(scaleValue, {
+      toValue: showMenu ? 1 : 0.88,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+
+    Animated.timing(offsetValue, {
+      // YOur Random Value...
+      toValue: showMenu ? 0 : 230,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+
+    Animated.timing(closeButtonOffset, {
+      // YOur Random Value...
+      toValue: !showMenu ? -30 : 0,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+    setShowMenu(!showMenu);
+  };
+
   return (
     <TouchableOpacity
       onPress={() => {
-        title === 'Quitter' ? backAction() : setCurrent(title);
+        title === 'Quitter' ? backAction() : actionNavigation();
       }}>
       <View
         style={{
@@ -58,11 +92,32 @@ const ItemsTab = ({current, setCurrent, title, icon}) => {
     </TouchableOpacity>
   );
 };
+const mypage = current => {
+  switch (current) {
+    case 'Accueil':
+      return <Accueil />;
+
+    case 'Mes Cours':
+      return <Cours />;
+
+    case 'Discussion':
+      <Discussion />;
+      break;
+
+    case 'Mail':
+      <Mail />;
+      break;
+    case 'Travaux':
+      <Travaux />;
+      break;
+    case 'Video':
+      break;
+  }
+};
 
 const Dashboard = ({navigation}) => {
-  const [current, setCurrent] = useState('accueil');
+  const [current, setCurrent] = useState('Accueil');
   const [showMenu, setShowMenu] = useState(false);
-
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
@@ -75,36 +130,66 @@ const Dashboard = ({navigation}) => {
             <ItemsTab
               current={current}
               setCurrent={setCurrent}
-              title="accueil"
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              offsetValue={offsetValue}
+              scaleValue={scaleValue}
+              closeButtonOffset={closeButtonOffset}
+              title="Accueil"
               icon="home"
             />
             <ItemsTab
               current={current}
               setCurrent={setCurrent}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              offsetValue={offsetValue}
+              scaleValue={scaleValue}
+              closeButtonOffset={closeButtonOffset}
               title="Mes Cours"
               icon="github"
             />
             <ItemsTab
               current={current}
               setCurrent={setCurrent}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              offsetValue={offsetValue}
+              scaleValue={scaleValue}
+              closeButtonOffset={closeButtonOffset}
               title="Mes travaux"
               icon="dropbox"
             />
             <ItemsTab
               current={current}
               setCurrent={setCurrent}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              offsetValue={offsetValue}
+              scaleValue={scaleValue}
+              closeButtonOffset={closeButtonOffset}
               title="Vidéo conférence"
               icon="video-camera"
             />
             <ItemsTab
               current={current}
               setCurrent={setCurrent}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              offsetValue={offsetValue}
+              scaleValue={scaleValue}
+              closeButtonOffset={closeButtonOffset}
               title="Discussion"
               icon="comment"
             />
             <ItemsTab
               current={current}
               setCurrent={setCurrent}
+              setShowMenu={setShowMenu}
+              showMenu={showMenu}
+              offsetValue={offsetValue}
+              scaleValue={scaleValue}
+              closeButtonOffset={closeButtonOffset}
               title="Email"
               icon="comment"
             />
@@ -113,6 +198,11 @@ const Dashboard = ({navigation}) => {
         <ItemsTab
           current={current}
           setCurrent={setCurrent}
+          setShowMenu={setShowMenu}
+          showMenu={showMenu}
+          offsetValue={offsetValue}
+          scaleValue={scaleValue}
+          closeButtonOffset={closeButtonOffset}
           title="Quitter"
           icon="logout"
         />
@@ -191,6 +281,7 @@ const Dashboard = ({navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
+          {mypage(current)}
         </Animated.View>
       </Animated.View>
     </SafeAreaView>
