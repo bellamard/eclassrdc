@@ -59,6 +59,10 @@ const Styles = StyleSheet.create({
     marginHorizontal: 10,
     padding: 25,
   },
+  courseBody: {
+    paddingHorizontal: 20,
+    marginBottom: 100,
+  },
   bodyBox: {
     width: '100%',
     alignItems: 'center',

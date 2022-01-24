@@ -36,6 +36,20 @@ const Styles = StyleSheet.create({
   buttonCardTitle: {
     color: 'white',
   },
+
+  cardCourse: {
+    marginTop: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.125)',
+  },
+  courseImage: {
+    marginTop: 10,
+    borderWidth: 1,
+    borderColor: 'rgba(0, 0, 0, 0.125)',
+  },
 });
 
 export default Styles;
