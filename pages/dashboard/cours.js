@@ -31,13 +31,16 @@ const Cours = ({navigation}) => {
       myClass: '3eme Scientifique',
     },
   ];
+  const date = new Date().getFullYear();
   return (
     <ScrollView>
-      <View style={Styles.courseBody}>
-        <Text>cours</Text>
-        <ListCourse course={courses} />
-      </View>
-      <Text></Text>
+      <SafeAreaView>
+        <View style={Styles.courseBody}>
+          <Text>cours</Text>
+          <ListCourse course={courses} />
+          <Text>&copy; {date} e-classerdc</Text>
+        </View>
+      </SafeAreaView>
     </ScrollView>
   );
 };
