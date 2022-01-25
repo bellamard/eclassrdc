@@ -2,6 +2,8 @@ import React from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Styles from './style';
 import Book from '../images/book.png';
+import Icon from 'react-native-vector-icons/FontAwesome';
+const MyIcon = icone => <Icon name="eye" size={30} color="#009efb" />;
 
 const CardCours = ({navigation, course}) => {
   const {name, myClass, teacher} = course;
@@ -12,6 +14,7 @@ const CardCours = ({navigation, course}) => {
       <Text style={Styles.titleClass}>{myClass}</Text>
       <Text style={Styles.titleteacher}>{teacher}</Text>
       <TouchableOpacity onPress={() => {}} style={Styles.buttonCardCourse}>
+        <MyIcon />
         <Text style={Styles.buttonCardCourseTitle}>Ouvrir</Text>
       </TouchableOpacity>
     </View>
