@@ -13,7 +13,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Launch from './pages/launch';
 import Login from './pages/login';
 import Signup from './pages/signup';
-import Dashboard from './pages/dashboard';
+import Dashboard from './routes/routeVideo';
 
 const Stack = createNativeStackNavigator();
 
