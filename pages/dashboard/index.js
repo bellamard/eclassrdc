@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useState, useRef, useEffect} from 'react';
 import {
   View,
@@ -17,6 +18,7 @@ import Cours from './cours';
 import Discussion from './discussion';
 import Mail from './mail';
 import Travaux from './travaux';
+import Video from './video';
 const myIcon = icone => <Icon name={icone} size={30} color="#607d8b" />;
 
 const backAction = () => {
@@ -40,6 +42,7 @@ const ItemsTab = ({
   scaleValue,
   closeButtonOffset,
   offsetValue,
+  label,
 }) => {
   const actionNavigation = () => {
     setCurrent(title);
@@ -78,13 +81,13 @@ const ItemsTab = ({
           paddingLeft: 8,
           paddingRight: 8,
           borderRadius: 8,
-          backgroundColor: current == title ? '#009efb' : 'transparent',
+          backgroundColor: current === title ? '#009efb' : 'transparent',
         }}>
         {myIcon(icon)}
         <Text
           style={{
             marginLeft: 5,
-            color: current == title ? 'black' : '#607d8b',
+            color: current === title ? 'black' : '#607d8b',
           }}>
           {title}
         </Text>
@@ -101,17 +104,16 @@ const mypage = current => {
       return <Cours />;
 
     case 'Discussion':
-      <Discussion />;
-      break;
+      return <Discussion />;
 
-    case 'Mail':
-      <Mail />;
-      break;
-    case 'Travaux':
-      <Travaux />;
-      break;
-    case 'Video':
-      break;
+    case 'Email':
+      return <Mail />;
+
+    case 'Mes travaux':
+      return <Travaux />;
+
+    case 'Vidéo conférence':
+      return <Video />;
   }
 };
 

@@ -29,6 +29,7 @@ const Cours = ({navigation}) => {
       name: 'Chimie',
       teacher: 'Mr. Smith',
       myClass: '3eme Scientifique',
+      session: true,
     },
   ];
   const date = new Date().getFullYear();

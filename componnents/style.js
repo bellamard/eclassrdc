@@ -64,6 +64,17 @@ const Styles = StyleSheet.create({
     margin: 5,
     borderRadius: 5,
   },
+  buttonCardVideo: {
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#fff',
+    backgroundColor: '#009efb',
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 5,
+    borderRadius: 5,
+    justifyContent: 'center',
+  },
   buttonCardCourseTitle: {
     color: '#009efb',
   },
@@ -73,6 +84,10 @@ const Styles = StyleSheet.create({
   titleClass: {
     marginVertical: 5,
     fontSize: 12,
+  },
+  boxButtonCourse: {
+    backgroundColor: '#red',
+    flexDirection: 'row',
   },
 });
 
