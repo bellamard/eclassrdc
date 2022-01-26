@@ -12,10 +12,12 @@ const VideoCall = ({navigation}) => {
 
   const onConferenceJoined = nativeEvent => {
     /* Conference joined event */
+    console.log('tu marches');
   };
 
   const onConferenceWillJoin = nativeEvent => {
     /* Conference will join event */
+    console.log('ce quoi ?');
   };
 
   useEffect(() => {

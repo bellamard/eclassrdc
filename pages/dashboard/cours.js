@@ -4,9 +4,9 @@ import Styles from './style';
 import CardCours from '../../componnents/cardCours';
 import axios from 'axios';
 
-const ListCourse = ({course}) => {
+const ListCourse = ({course, navigation}) => {
   return course.map((item, index) => {
-    return <CardCours key={index} course={item} />;
+    return <CardCours key={index} course={item} navigation={navigation} />;
   });
 };
 
@@ -38,7 +38,7 @@ const Cours = ({navigation}) => {
       <SafeAreaView>
         <View style={Styles.courseBody}>
           <Text>cours</Text>
-          <ListCourse course={courses} />
+          <ListCourse course={courses} navigation={navigation} />
           <Text>&copy; {date} e-classerdc</Text>
         </View>
       </SafeAreaView>

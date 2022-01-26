@@ -95,27 +95,6 @@ const ItemsTab = ({
     </TouchableOpacity>
   );
 };
-const mypage = current => {
-  switch (current) {
-    case 'Accueil':
-      return <Accueil />;
-
-    case 'Mes Cours':
-      return <Cours />;
-
-    case 'Discussion':
-      return <Discussion />;
-
-    case 'Email':
-      return <Mail />;
-
-    case 'Mes travaux':
-      return <Travaux />;
-
-    case 'Vidéo conférence':
-      return <Video />;
-  }
-};
 
 const Dashboard = ({navigation}) => {
   const [current, setCurrent] = useState('Accueil');
@@ -123,6 +102,28 @@ const Dashboard = ({navigation}) => {
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
+
+  const mypage = current => {
+    switch (current) {
+      case 'Accueil':
+        return <Accueil />;
+
+      case 'Mes Cours':
+        return <Cours />;
+
+      case 'Discussion':
+        return <Discussion />;
+
+      case 'Email':
+        return <Mail />;
+
+      case 'Mes travaux':
+        return <Travaux />;
+
+      case 'Vidéo conférence':
+        return <Video navigation={navigation} />;
+    }
+  };
 
   return (
     <SafeAreaView style={Styles.container}>
