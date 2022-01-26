@@ -112,7 +112,7 @@ const Login = ({navigation}) => {
               </TouchableOpacity>
               <View>
                 <Text>Vous n'avez pas de compte?</Text>
-                <TouchableOpacity onPress={() => navigation.navigate('Singup')}>
+                <TouchableOpacity onPress={() => navigation.navigate('')}>
                   <Text style={Styles.signe}>Créer un compte</Text>
                 </TouchableOpacity>
                 {isError ? (

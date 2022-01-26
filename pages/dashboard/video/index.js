@@ -33,7 +33,7 @@ const Video = ({navigation, data}) => {
           minLength={3}
           style={Styles.inputConf}
         />
-        <TouchableOpacity style={Styles.btnVideo}>
+        <TouchableOpacity style={Styles.btnVideo} onPress={() => navigation.navigate('Singup')}>
           <Text style={Styles.btnVideoTitle}>Rejoindre</Text>
         </TouchableOpacity>
       </View>
