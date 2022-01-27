@@ -19,6 +19,7 @@ import Discussion from './discussion';
 import Mail from './mail';
 import Travaux from './travaux';
 import Video from './video';
+import Lecons from './lecons';
 const myIcon = icone => <Icon name={icone} size={30} color="#607d8b" />;
 
 const backAction = () => {
@@ -109,7 +110,7 @@ const Dashboard = ({navigation}) => {
         return <Accueil />;
 
       case 'Mes Cours':
-        return <Cours />;
+        return <Cours setCurrent={setCurrent} />;
 
       case 'Discussion':
         return <Discussion />;
@@ -122,6 +123,9 @@ const Dashboard = ({navigation}) => {
 
       case 'Vidéo conférence':
         return <Video navigation={navigation} />;
+
+      case 'Lecons':
+        return <Lecons />;
     }
   };
 

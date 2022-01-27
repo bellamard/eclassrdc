@@ -5,8 +5,8 @@ import Book from '../images/book.png';
 import Icon from 'react-native-vector-icons/FontAwesome';
 const MyIcon = icone => <Icon name="eye" size={30} color="#009efb" />;
 const MyVideo = icone => <Icon name="video-camera" size={30} color="#fff" />;
-const CardCours = ({navigation, course}) => {
-  const {name, myClass, teacher, session, conference} = course;
+const CardCours = ({course, conference, myCourse}) => {
+  const {name, myClass, teacher, session} = course;
   return (
     <View style={Styles.cardCourse}>
       <Image source={Book} style={Styles.courseImage} />
@@ -15,20 +15,12 @@ const CardCours = ({navigation, course}) => {
       <Text style={Styles.titleteacher}>{teacher}</Text>
 
       <View style={Styles.boxButtonCourse}>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.push('Lecons', {conference, myClass, teacher});
-          }}
-          style={Styles.buttonCardCourse}>
+        <TouchableOpacity onPress={myCourse} style={Styles.buttonCardCourse}>
           <MyIcon />
           <Text style={Styles.buttonCardCourseTitle}>Ouvrir</Text>
         </TouchableOpacity>
         {session ? (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.push('conference', {conference});
-            }}
-            style={Styles.buttonCardVideo}>
+          <TouchableOpacity onPress={conference} style={Styles.buttonCardVideo}>
             <MyVideo />
           </TouchableOpacity>
         ) : null}

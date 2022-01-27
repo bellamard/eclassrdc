@@ -4,13 +4,7 @@ import Styles from './style';
 import CardCours from '../../componnents/cardCours';
 import axios from 'axios';
 
-const ListCourse = ({course, navigation}) => {
-  return course.map((item, index) => {
-    return <CardCours key={index} course={item} navigation={navigation} />;
-  });
-};
-
-const Cours = ({navigation}) => {
+const Cours = ({navigation, setCurrent}) => {
   const courses = [
     {
       id: 1,
@@ -32,7 +26,33 @@ const Cours = ({navigation}) => {
       session: true,
     },
   ];
+  const ListCourse = ({course}) => {
+    return course.map((item, index) => {
+      return (
+        <CardCours
+          key={index}
+          course={item}
+          myCourse={
+            // () => alert('lecons')
+            // navigation.navigate('Lecons', {course: item})
+            () => setCurrent('Lecons')
+          }
+          conference={
+            // () => alert('conference')
+            () => setCurrent('Vidéo conférence')
+          }
+        />
+      );
+    });
+  };
   const date = new Date().getFullYear();
+
+  //
+  //
+  //
+  //
+  //
+  //
   return (
     <ScrollView>
       <SafeAreaView>
