@@ -4,7 +4,7 @@ import Styles from './style';
 import CardCours from '../../componnents/cardCours';
 import axios from 'axios';
 
-const Cours = ({navigation, setCurrent}) => {
+const Cours = ({navigation, setCurrent, setLesson}) => {
   const courses = [
     {
       id: 1,
@@ -32,15 +32,11 @@ const Cours = ({navigation, setCurrent}) => {
         <CardCours
           key={index}
           course={item}
-          myCourse={
-            // () => alert('lecons')
-            // navigation.navigate('Lecons', {course: item})
-            () => setCurrent('Lecons')
-          }
-          conference={
-            // () => alert('conference')
-            () => setCurrent('Vidéo conférence')
-          }
+          myCourse={() => {
+            setLesson(item);
+            setCurrent('Lecons');
+          }}
+          conference={() => setCurrent('Vidéo conférence')}
         />
       );
     });

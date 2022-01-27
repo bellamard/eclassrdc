@@ -7,6 +7,7 @@ const MyIcon = icone => <Icon name="eye" size={30} color="#009efb" />;
 const MyVideo = icone => <Icon name="video-camera" size={30} color="#fff" />;
 const CardCours = ({course, conference, myCourse}) => {
   const {name, myClass, teacher, session} = course;
+
   return (
     <View style={Styles.cardCourse}>
       <Image source={Book} style={Styles.courseImage} />

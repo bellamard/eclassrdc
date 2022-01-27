@@ -99,6 +99,7 @@ const ItemsTab = ({
 
 const Dashboard = ({navigation}) => {
   const [current, setCurrent] = useState('Accueil');
+  const [lesson, setLesson] = useState({});
   const [showMenu, setShowMenu] = useState(false);
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
@@ -110,7 +111,7 @@ const Dashboard = ({navigation}) => {
         return <Accueil />;
 
       case 'Mes Cours':
-        return <Cours setCurrent={setCurrent} />;
+        return <Cours setCurrent={setCurrent} setLesson={setLesson} />;
 
       case 'Discussion':
         return <Discussion />;
@@ -125,7 +126,7 @@ const Dashboard = ({navigation}) => {
         return <Video navigation={navigation} />;
 
       case 'Lecons':
-        return <Lecons />;
+        return <Lecons lesson={lesson} />;
     }
   };
 
