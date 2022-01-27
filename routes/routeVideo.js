@@ -2,7 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Video from '../pages/dashboard/';
 import Conference from '../pages/dashboard/video/videocall';
-import Lecons from '../pages/dashboard/lecons';
+import Lecons from '../pages/dashboard/lecons/apercus';
 const Stack = createNativeStackNavigator();
 
 const RouteVideo = () => {

@@ -40,6 +40,74 @@ const Styles = StyleSheet.create({
     borderWidth: 0.25,
     borderColor: '#6c757d',
   },
+  BoxContenu: {
+    marginHorizontal: 5,
+    borderTopWidth: 0.5,
+    padding: 10,
+  },
+  boxTitleContenu: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  TitleContenu: {
+    fontSize: 20,
+    paddingBottom: 5,
+  },
+  boxPrint: {
+    flexDirection: 'row',
+  },
+  boxPrintExcel: {
+    borderWidth: 0.5,
+    padding: 10,
+    margin: 2,
+    borderTopLeftRadius: 3,
+    borderBottomLeftRadius: 3,
+  },
+  boxPrintPDF: {
+    borderWidth: 0.5,
+    padding: 10,
+    margin: 2,
+    borderRadius: 3,
+  },
+  boxResearch: {
+    borderBottomWidth: 0.5,
+    borderColor: '#767676',
+    width: '100%',
+  },
+  boxItem: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 5,
+    padding: 5,
+    borderRadius: 2,
+    borderWidth: 0.3,
+    borderColor: '#E1DFDF',
+  },
+  boxItemTitle: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  boxItemButton: {
+    marginVertical: 5,
+    marginHorizontal: 5,
+    padding: 5,
+    borderRadius: 5,
+    backgroundColor: '#1584c5',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  boxItemButtonTitle: {
+    fontSize: 14,
+    color: '#fff',
+    marginLeft: 5,
+  },
+  safe: {
+    marginBottom: 100,
+  },
+  boxButton: {
+    flexDirection: 'column',
+  },
 });
 
 export default Styles;
