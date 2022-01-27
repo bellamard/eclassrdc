@@ -1,9 +1,51 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, TextInput, ScrollView, SafeAreaView} from 'react-native';
+import {
+  View,
+  Text,
+  TextInput,
+  ScrollView,
+  SafeAreaView,
+  TouchableOpacity,
+} from 'react-native';
 import Styles from './style';
+import PickContenu from '../../../componnents/pickContenu';
 const Lecons = ({navigation, lesson}) => {
   const {id, name, teacher, myClass} = lesson;
-  const [contenu, setContenu] = useState(['']);
+  const [contenu, setContenu] = useState([]);
+  const [epreuves, setEpreuves] = useState([]);
+  const [researchContenu, setResearchContenu] = useState('');
+  const [researchEpreuve, setResearchEpreuve] = useState('');
+  const [stateAction, setStateAction] = useState(false);
+  const [statecontenu, setStateContenu] = useState(false);
+  //
+  const boxContenu = () => {
+    return (
+      <View>
+        <View>
+          <Text>Contenu</Text>
+          <View>
+            <TouchableOpacity onPress={() => {}}>
+              <Text>Excel</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {}}>
+              <Text>PDF</Text>
+            </TouchableOpacity>
+            <PickContenu
+              stateAction={stateAction}
+              setStateAction={setStateAction}
+              statecontenu={statecontenu}
+              setStateContenu={setStateContenu}
+            />
+          </View>
+          <TextInput onChangeText={researchContenu} placeholder="Recherche" />
+        </View>
+        <View></View>
+      </View>
+    );
+  };
+  //
+  //
+  //
   return (
     <SafeAreaView>
       <ScrollView>
@@ -28,7 +70,8 @@ const Lecons = ({navigation, lesson}) => {
           </View>
         </View>
         <View>
-          <Text></Text>
+          {contenu === [] ? <Text>Contenu</Text> : alert('pas des contenus')}
+          {epreuves === [] ? <Text>Epreuves</Text> : alert('pas des contenus')}
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -1,13 +1,12 @@
-import React, {useState, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import {Picker} from '@react-native-picker/picker';
-const items = props => {
-  const {itemsSelect} = props;
-  console.log(itemsSelect);
-  return itemsSelect.map((item, index) => {
-    return <Picker.Item label={item.title} value={item.title} key={index} />;
-  });
-};
-const MyPicker = ({itemsSelect}) => {
+
+const PickContenu = ({
+  setStateAction,
+  setStateContenu,
+  stateAction,
+  statecontenu,
+}) => {
   const pickerRef = useRef();
   const [value, setValue] = useState('');
   function open() {
@@ -17,16 +16,20 @@ const MyPicker = ({itemsSelect}) => {
   function close() {
     pickerRef.current.blur();
   }
-
   return (
     <Picker
       ref={pickerRef}
       selectedValue={value}
       onValueChange={(itemValue, itemIndex) => {
         setValue(itemValue);
+        value === 'Action'
+          ? setStateAction(!stateAction)
+          : setStateContenu(!statecontenu);
       }}>
-      {items(itemsSelect)}
+      <Picker.Item label={'Titre'} value={'Titre'} />;
+      <Picker.Item label={'Action'} value={'Action'} />;
     </Picker>
   );
 };
-export default MyPicker;
+
+export default PickContenu;
