@@ -126,7 +126,7 @@ const Dashboard = ({navigation}) => {
         return <Video navigation={navigation} />;
 
       case 'Lecons':
-        return <Lecons lesson={lesson} />;
+        return <Lecons lesson={lesson} navigation={navigation} />;
     }
   };
 

@@ -48,7 +48,9 @@ const Lecons = ({navigation, lesson}) => {
               <View style={Styles.boxItem} key={index}>
                 <Text style={Styles.boxItemTitle}>{contenu.Title}</Text>
                 <TouchableOpacity
-                  onPress={() => navigation.push('Lecons', contenu)}
+                  onPress={() => {
+                    navigation.push('Lecons', contenu);
+                  }}
                   style={Styles.boxItemButton}>
                   {mIcon('eye')}
                   <Text style={Styles.boxItemButtonTitle}>Consulter</Text>
@@ -82,19 +84,19 @@ const Lecons = ({navigation, lesson}) => {
           />
         </View>
         <View>
-          {contenu.map((contenu, index, navigation) => {
+          {contenu.map((epreuve, index) => {
             return (
               <View style={Styles.boxItem} key={index}>
-                <Text style={Styles.boxItemTitle}>{contenu.Title}</Text>
+                <Text style={Styles.boxItemTitle}>{epreuve.Title}</Text>
                 <View style={Styles.boxButton}>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Lecons', contenu)}
+                    onPress={() => navigation.navigate('Lecons', epreuve)}
                     style={Styles.boxItemButton}>
                     {mIcon('eye')}
                     <Text style={Styles.boxItemButtonTitle}>Consulter</Text>
                   </TouchableOpacity>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Lecons', contenu)}
+                    onPress={() => navigation.navigate('Lecons', epreuve)}
                     style={Styles.boxItemButton}>
                     {mIcon('eye')}
                     <Text style={Styles.boxItemButtonTitle}>Resolution</Text>
