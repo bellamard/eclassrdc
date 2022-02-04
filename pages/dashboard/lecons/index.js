@@ -18,6 +18,12 @@ const Lecons = ({navigation, lesson}) => {
   const [researchEpreuve, setResearchEpreuve] = useState('');
   const [stateAction, setStateAction] = useState(false);
   const [statecontenu, setStateContenu] = useState(false);
+  const [increment, setIncrement] = useState(1);
+  const [page, setPage] = useState([]);
+  const [maxPage, setMaxPage] = useState(5);
+  const [nbrMax, setNbrMax] = useState(0);
+  const [nbrMin, setNbrMin] = useState(4);
+
   //
   const myIcon = icone => <Icon name={icone} size={30} color="#000" />;
   const mIcon = icone => <Icon name={icone} size={30} color="#fff" />;
@@ -44,12 +50,13 @@ const Lecons = ({navigation, lesson}) => {
         </View>
         <View>
           {contenu.map((contenu, index) => {
+            let Title = contenu.Title;
             return (
               <View style={Styles.boxItem} key={index}>
                 <Text style={Styles.boxItemTitle}>{contenu.Title}</Text>
                 <TouchableOpacity
                   onPress={() => {
-                    navigation.push('Lecons', contenu);
+                    navigation.push('Lecons', {Title, name, teacher, myClass});
                   }}
                   style={Styles.boxItemButton}>
                   {mIcon('eye')}
@@ -84,13 +91,21 @@ const Lecons = ({navigation, lesson}) => {
           />
         </View>
         <View>
-          {contenu.map((epreuve, index) => {
+          {epreuves.map((epreuve, index) => {
+            let Title = epreuve.Title;
             return (
               <View style={Styles.boxItem} key={index}>
                 <Text style={Styles.boxItemTitle}>{epreuve.Title}</Text>
                 <View style={Styles.boxButton}>
                   <TouchableOpacity
-                    onPress={() => navigation.navigate('Lecons', epreuve)}
+                    onPress={() =>
+                      navigation.navigate('Lecons', {
+                        Title,
+                        name,
+                        teacher,
+                        myClass,
+                      })
+                    }
                     style={Styles.boxItemButton}>
                     {mIcon('eye')}
                     <Text style={Styles.boxItemButtonTitle}>Consulter</Text>
@@ -105,16 +120,52 @@ const Lecons = ({navigation, lesson}) => {
               </View>
             );
           })}
+          <View style={Styles.boxIncrement}>
+            <TouchableOpacity
+              onPress={() => {
+                increment === 1 ? setIncrement(1) : setIncrement(increment - 1);
+              }}
+              style={Styles.buttonIncrement}>
+              <Text>-</Text>
+            </TouchableOpacity>
+            <Text>{increment}</Text>
+            <TouchableOpacity
+              onPress={() => {
+                increment === maxPage
+                  ? setIncrement(maxPage)
+                  : setIncrement(increment + 1);
+              }}
+              style={Styles.buttonIncrement}>
+              <Text>+</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );
   };
-
+  const managedPage = () => {};
   useEffect(() => {
     setContenu([
       {id: 1, Title: 'suite de fibonacci'},
       {id: 2, Title: 'suite de Cauchy'},
       {id: 3, Title: 'suite Premiere'},
+      {id: 4, Title: 'suite de fibonacci'},
+      {id: 5, Title: 'suite de Cauchy'},
+      {id: 6, Title: 'suite Premiere'},
+      {id: 7, Title: 'suite de fibonacci'},
+      {id: 8, Title: 'suite de Cauchy'},
+      {id: 9, Title: 'suite Premiere'},
+    ]);
+    setEpreuves([
+      {id: 1, Title: 'suite de fibonacci'},
+      {id: 2, Title: 'suite de Cauchy'},
+      {id: 3, Title: 'suite Premiere'},
+      {id: 4, Title: 'suite de fibonacci'},
+      {id: 5, Title: 'suite de Cauchy'},
+      {id: 6, Title: 'suite Premiere'},
+      {id: 7, Title: 'suite de fibonacci'},
+      {id: 8, Title: 'suite de Cauchy'},
+      {id: 9, Title: 'suite Premiere'},
     ]);
     setStateContenu(true);
     setStateAction(true);
@@ -147,6 +198,7 @@ const Lecons = ({navigation, lesson}) => {
         </View>
         <View>
           {statecontenu ? <BoxContenu /> : alert('pas des contenus')}
+
           {stateAction ? <BoxEpreuve /> : alert('pas des épreuve')}
         </View>
       </SafeAreaView>

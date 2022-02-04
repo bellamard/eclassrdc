@@ -14,6 +14,7 @@ const Styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#17a2b8',
     margin: 10,
+    justifyContent: 'center',
   },
   row: {
     flexDirection: 'row',
@@ -107,6 +108,46 @@ const Styles = StyleSheet.create({
   },
   boxButton: {
     flexDirection: 'column',
+  },
+  buttonIncrement: {
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderRadius: 5,
+    borderWidth: 1,
+    marginHorizontal: 5,
+  },
+  boxIncrement: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  title3: {
+    fontSize: 21,
+    textAlign: 'center',
+    color: '#455a64',
+  },
+  boxLessonContenu: {
+    paddingHorizontal: 15,
+  },
+  lessonContenu: {
+    textAlign: 'justify',
+    fontSize: 16,
+  },
+  boxFiles: {
+    marginTop: 10,
+    borderTopWidth: 1,
+    borderColor: '#E1DFDF',
+  },
+  titleFile: {
+    marginVertical: 10,
+  },
+  captionTab: {
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    borderColor: '#E1DFDF',
+    borderWidth: 1,
+    flexWrap: 'nowrap',
   },
 });
 

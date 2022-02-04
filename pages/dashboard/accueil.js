@@ -3,7 +3,7 @@ import {View, Text, Image} from 'react-native';
 import Styles from './style';
 import CardId from '../../componnents/cardId';
 
-const Accueil = ({navigation}) => {
+const Accueil = ({navigation, user}) => {
   return (
     <View style={Styles.body}>
       <View style={Styles.bodyBox}>
@@ -12,7 +12,10 @@ const Accueil = ({navigation}) => {
           style={Styles.logoHome}
         />
       </View>
-      <CardId Name={'bellamard'} MyClasse={'3eme Scientifique'} />
+      <CardId
+        Name={user.name}
+        MyClasse={user.classe + ', Option:' + user.option}
+      />
     </View>
   );
 };

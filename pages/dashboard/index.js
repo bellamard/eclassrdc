@@ -20,7 +20,13 @@ import Mail from './mail';
 import Travaux from './travaux';
 import Video from './video';
 import Lecons from './lecons';
-const myIcon = icone => <Icon name={icone} size={30} color="#607d8b" />;
+import menuImage from '../../images/menu.png';
+import messageImage from '../../images/msg.png';
+import mailImage from '../../images/email.png';
+
+const myIcon = icone => (
+  <Image source={icone} style={{width: 30, height: 30}} color="#607d8b" />
+);
 
 const backAction = () => {
   Alert.alert('Quitter', 'Êtes-vous sûr de vouloir quitter ?', [
@@ -43,7 +49,7 @@ const ItemsTab = ({
   scaleValue,
   closeButtonOffset,
   offsetValue,
-  label,
+  setshowStateProfil,
 }) => {
   const actionNavigation = () => {
     setCurrent(title);
@@ -67,6 +73,7 @@ const ItemsTab = ({
       useNativeDriver: true,
     }).start();
     setShowMenu(!showMenu);
+    setshowStateProfil(true);
   };
 
   return (
@@ -101,14 +108,27 @@ const Dashboard = ({navigation}) => {
   const [current, setCurrent] = useState('Accueil');
   const [lesson, setLesson] = useState({});
   const [showMenu, setShowMenu] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    name: 'Bellamard kiala',
+    classe: '4é CG',
+    option: 'Scientifique',
+  });
+  // useEffect(() => {
+  //   setshowStateProfil(!showStateProfil);
+  // }, [showStateProfil]);
+  const [showStateProfil, setshowStateProfil] = useState(true);
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
   const closeButtonOffset = useRef(new Animated.Value(0)).current;
 
+  const scaleValueProfile = useRef(new Animated.Value(1)).current;
+  const offsetValueProfile = useRef(new Animated.Value(0)).current;
+  const closeButtonOffsetProfile = useRef(new Animated.Value(0)).current;
+
   const mypage = current => {
     switch (current) {
       case 'Accueil':
-        return <Accueil />;
+        return <Accueil user={userInfo} />;
 
       case 'Mes Cours':
         return <Cours setCurrent={setCurrent} setLesson={setLesson} />;
@@ -129,6 +149,57 @@ const Dashboard = ({navigation}) => {
         return <Lecons lesson={lesson} navigation={navigation} />;
     }
   };
+  const menuProfil = () => {
+    return (
+      <Animated.View
+        style={{
+          flexGrow: 1,
+          backgroundColor: 'white',
+          position: 'absolute',
+          top: 60,
+          zIndex: 100,
+          width: '100%',
+          display: showStateProfil ? 'none' : 'flex',
+          borderBottomWidth: 1,
+          padding: 10,
+          transform: [
+            {scale: scaleValueProfile},
+            {translateX: offsetValueProfile},
+            {
+              translateY: closeButtonOffsetProfile,
+            },
+          ],
+        }}>
+        <View>
+          <View>
+            <Image
+              source={require('../../images/user.jpg')}
+              style={Styles.logoProfil}
+            />
+            <Text>{userInfo.name}</Text>
+
+            <Text style={Styles.itemProfEmail}>
+              {userInfo.name}+'@eclasse.com'
+            </Text>
+          </View>
+          <View>
+            <TouchableOpacity onPress={() => {}} style={Styles.itemProf}>
+              <Text>Mon Compte</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {}} style={Styles.itemProf}>
+              <View style={Styles.headerbox}>
+                <Image
+                  style={{width: 20, height: 20}}
+                  source={require('../../images/logos.png')}
+                />
+                <Text>Quitter</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Animated.View>
+    );
+  };
 
   return (
     <SafeAreaView style={Styles.container}>
@@ -143,6 +214,7 @@ const Dashboard = ({navigation}) => {
               offsetValue={offsetValue}
               scaleValue={scaleValue}
               closeButtonOffset={closeButtonOffset}
+              setshowStateProfil={setshowStateProfil}
               title="Accueil"
               icon="home"
             />
@@ -154,6 +226,7 @@ const Dashboard = ({navigation}) => {
               offsetValue={offsetValue}
               scaleValue={scaleValue}
               closeButtonOffset={closeButtonOffset}
+              setshowStateProfil={setshowStateProfil}
               title="Mes Cours"
               icon="github"
             />
@@ -165,6 +238,7 @@ const Dashboard = ({navigation}) => {
               offsetValue={offsetValue}
               scaleValue={scaleValue}
               closeButtonOffset={closeButtonOffset}
+              setshowStateProfil={setshowStateProfil}
               title="Mes travaux"
               icon="dropbox"
             />
@@ -176,6 +250,7 @@ const Dashboard = ({navigation}) => {
               offsetValue={offsetValue}
               scaleValue={scaleValue}
               closeButtonOffset={closeButtonOffset}
+              setshowStateProfil={setshowStateProfil}
               title="Vidéo conférence"
               icon="video-camera"
             />
@@ -187,6 +262,7 @@ const Dashboard = ({navigation}) => {
               offsetValue={offsetValue}
               scaleValue={scaleValue}
               closeButtonOffset={closeButtonOffset}
+              setshowStateProfil={setshowStateProfil}
               title="Discussion"
               icon="comment"
             />
@@ -198,6 +274,7 @@ const Dashboard = ({navigation}) => {
               offsetValue={offsetValue}
               scaleValue={scaleValue}
               closeButtonOffset={closeButtonOffset}
+              setshowStateProfil={setshowStateProfil}
               title="Email"
               icon="comment"
             />
@@ -211,6 +288,7 @@ const Dashboard = ({navigation}) => {
           offsetValue={offsetValue}
           scaleValue={scaleValue}
           closeButtonOffset={closeButtonOffset}
+          setshowStateProfil={setshowStateProfil}
           title="Quitter"
           icon="logout"
         />
@@ -266,22 +344,45 @@ const Dashboard = ({navigation}) => {
                     duration: 300,
                     useNativeDriver: true,
                   }).start();
-
+                  setshowStateProfil(true);
                   setShowMenu(!showMenu);
                 }}>
-                {myIcon('align-justify')}
-                <Text style={Styles.text}>Menu</Text>
+                {myIcon(menuImage)}
+                {/* <Text style={Styles.text}>Menu</Text> */}
               </TouchableOpacity>
             </View>
 
             <View style={Styles.headerbox}>
-              <TouchableOpacity onClick={() => {}}>
-                {myIcon('align-justify')}
+              <TouchableOpacity onPress={() => {}}>
+                {myIcon(messageImage)}
               </TouchableOpacity>
-              <TouchableOpacity onClick={() => {}}>
-                {myIcon('align-justify')}
+              <TouchableOpacity onPress={() => {}}>
+                {myIcon(mailImage)}
               </TouchableOpacity>
-              <TouchableOpacity onClick={() => {}}>
+              <TouchableOpacity
+                onPress={() => {
+                  Animated.timing(scaleValueProfile, {
+                    toValue: showStateProfil ? 1 : 0.88,
+                    duration: 300,
+                    useNativeDriver: true,
+                  }).start();
+
+                  Animated.timing(offsetValueProfile, {
+                    // YOur Random Value...
+                    toValue: showStateProfil ? 0 : 230,
+                    duration: 300,
+                    useNativeDriver: true,
+                  }).start();
+
+                  Animated.timing(closeButtonOffsetProfile, {
+                    // YOur Random Value...
+                    toValue: !showStateProfil ? -30 : 0,
+                    duration: 300,
+                    useNativeDriver: true,
+                  }).start();
+
+                  setshowStateProfil(!showStateProfil);
+                }}>
                 <Image
                   source={require('../../images/user.jpg')}
                   style={Styles.userHeaders}
@@ -289,6 +390,7 @@ const Dashboard = ({navigation}) => {
               </TouchableOpacity>
             </View>
           </View>
+          {menuProfil()}
           {mypage(current)}
         </Animated.View>
       </Animated.View>

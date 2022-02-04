@@ -73,6 +73,23 @@ const Styles = StyleSheet.create({
     width: 180,
     height: 220,
   },
+  logoProfil: {
+    marginVertical: 10,
+    width: 120,
+    height: 120,
+  },
+  itemProf: {
+    width: 100,
+    paddingVertical: 10,
+    borderBottomWidth: 1,
+  },
+  itemProfEmail: {
+    paddingLeft: 5,
+    fontSize: 10,
+    paddingVertical: 5,
+    borderBottomWidth: 1,
+    width: 150,
+  },
 });
 
 export default Styles;
