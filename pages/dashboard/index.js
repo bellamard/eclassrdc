@@ -23,6 +23,13 @@ import Lecons from './lecons';
 import menuImage from '../../images/menu.png';
 import messageImage from '../../images/msg.png';
 import mailImage from '../../images/email.png';
+import coursImage from '../../images/book-solid.png';
+import homeImage from '../../images/home.png';
+import travailImage from '../../images/travail.png';
+import videoImage from '../../images/video.png';
+import discusionImage from '../../images/comment.png';
+import mailImageI from '../../images/email2.png';
+import powerImage from '../../images/power.png';
 
 const myIcon = icone => (
   <Image source={icone} style={{width: 30, height: 30}} color="#607d8b" />
@@ -186,12 +193,13 @@ const Dashboard = ({navigation}) => {
             <TouchableOpacity onPress={() => {}} style={Styles.itemProf}>
               <Text>Mon Compte</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => {}} style={Styles.itemProf}>
+            <TouchableOpacity
+              onPress={() => {
+                backAction();
+              }}
+              style={Styles.itemProf}>
               <View style={Styles.headerbox}>
-                <Image
-                  style={{width: 20, height: 20}}
-                  source={require('../../images/logos.png')}
-                />
+                <Image style={{width: 20, height: 20}} source={powerImage} />
                 <Text>Quitter</Text>
               </View>
             </TouchableOpacity>
@@ -216,7 +224,7 @@ const Dashboard = ({navigation}) => {
               closeButtonOffset={closeButtonOffset}
               setshowStateProfil={setshowStateProfil}
               title="Accueil"
-              icon="home"
+              icon={homeImage}
             />
             <ItemsTab
               current={current}
@@ -228,7 +236,7 @@ const Dashboard = ({navigation}) => {
               closeButtonOffset={closeButtonOffset}
               setshowStateProfil={setshowStateProfil}
               title="Mes Cours"
-              icon="github"
+              icon={coursImage}
             />
             <ItemsTab
               current={current}
@@ -240,7 +248,7 @@ const Dashboard = ({navigation}) => {
               closeButtonOffset={closeButtonOffset}
               setshowStateProfil={setshowStateProfil}
               title="Mes travaux"
-              icon="dropbox"
+              icon={travailImage}
             />
             <ItemsTab
               current={current}
@@ -252,7 +260,7 @@ const Dashboard = ({navigation}) => {
               closeButtonOffset={closeButtonOffset}
               setshowStateProfil={setshowStateProfil}
               title="Vidéo conférence"
-              icon="video-camera"
+              icon={videoImage}
             />
             <ItemsTab
               current={current}
@@ -264,7 +272,7 @@ const Dashboard = ({navigation}) => {
               closeButtonOffset={closeButtonOffset}
               setshowStateProfil={setshowStateProfil}
               title="Discussion"
-              icon="comment"
+              icon={discusionImage}
             />
             <ItemsTab
               current={current}
@@ -276,7 +284,7 @@ const Dashboard = ({navigation}) => {
               closeButtonOffset={closeButtonOffset}
               setshowStateProfil={setshowStateProfil}
               title="Email"
-              icon="comment"
+              icon={mailImageI}
             />
           </View>
         </ScrollView>
@@ -290,7 +298,7 @@ const Dashboard = ({navigation}) => {
           closeButtonOffset={closeButtonOffset}
           setshowStateProfil={setshowStateProfil}
           title="Quitter"
-          icon="logout"
+          icon={powerImage}
         />
       </View>
       <Animated.View
