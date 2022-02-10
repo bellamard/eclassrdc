@@ -1,22 +1,20 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Video from '../pages/dashboard/';
+import Discussion from '../pages/dashboard';
 import Conference from '../pages/dashboard/video/videocall';
-import Lecons from '../pages/dashboard/lecons/apercus';
-import Conversation from '../pages/dashboard/discussion/conversation';
+import Conversion from '../pages/dashboard/discussion/conversation';
 const Stack = createNativeStackNavigator();
 
 const RouteVideo = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Video"
-        component={Video}
+        name="Discussion"
+        component={Discussion}
         options={{headerShown: false}}
       />
       <Stack.Screen name="Conference" component={Conference} />
-      <Stack.Screen name="Lecons" component={Lecons} />
-      <Stack.Screen name="Conversation" component={Conversation} />
+      <Stack.Screen name="Conversion" component={Conversion} />
     </Stack.Navigator>
   );
 };

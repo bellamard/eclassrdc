@@ -141,7 +141,7 @@ const Dashboard = ({navigation}) => {
         return <Cours setCurrent={setCurrent} setLesson={setLesson} />;
 
       case 'Discussion':
-        return <Discussion />;
+        return <Discussion navigation={navigation} />;
 
       case 'Email':
         return <Mail />;
