@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {
   View,
   Text,
@@ -14,7 +14,6 @@ const Item = props => {
   return (
     <TouchableOpacity
       onPress={() => {
-        console.log(props.name);
         props.navigation.navigate('Conversation', {
           user: props.name,
           id: props.id,
@@ -31,58 +30,58 @@ const Item = props => {
 };
 
 const serveurData = [
-  {id: 1, name: 'christian'},
-  {id: 2, name: 'james'},
-  {id: 3, name: 'Luc'},
-  {id: 4, name: 'lionnel'},
-  {id: 5, name: 'christian'},
-  {id: 6, name: 'james'},
-  {id: 7, name: 'Luc'},
-  {id: 8, name: 'lionnel'},
+  {id: 1, name: 'christian', code: '00024'},
+  {id: 2, name: 'james', code: '00025'},
+  {id: 3, name: 'Luc', code: '00026'},
+  {id: 4, name: 'lionnel', code: '00027'},
+  {id: 5, name: 'christian', code: '00028'},
+  {id: 6, name: 'james', code: '00029'},
+  {id: 7, name: 'Luc', code: '00030'},
+  {id: 8, name: 'lionnel', code: '00031'},
+  {id: 9, name: 'React', code: '00032'},
 ];
 
 const Discussion = ({navigation}) => {
   const [search, setSearch] = useState('');
-  const [data, setData] = useState([]);
+  const [Contacts, setContacts] = useState(serveurData);
+  const [Filters, setFilters] = useState(serveurData);
 
   const renderIte = ({item}) => {
-    return <Item name={item.name} navigation={navigation} />;
+    return <Item name={item.name} id={item.id} navigation={navigation} />;
   };
 
-  useEffect(() => {
-    setData(
-      serveurData
-        .filter(student => {
-          if (search === '') {
-            console.log(student.name);
-            return student;
-          } else if (student.name.includes(search)) {
-            return student;
-          }
-        })
-        .map(students => students),
+  const managedContacts = () => {
+    setFilters(
+      ...Filters.filter(contacts => {
+        if (search.length === 0 || search === ' ') {
+          return contacts;
+        } else if (`${contacts.name}`.includes(search)) {
+          return contacts;
+        }
+        return null;
+      }).map(contact => {
+        console.log(contact);
+        return contact;
+      }),
     );
-  }, [search]);
+    return (
+      <FlatList
+        data={Filters}
+        renderItem={renderIte}
+        keyExtractor={item => item.id}
+      />
+    );
+  };
+
   return (
     <View style={Styles.body}>
       <TextInput
         onChange={setSearch}
-        value={search}
         placeholder="Recherche contacts"
+        value={search}
         style={Styles.input}
       />
-
-      <FlatList
-        onPress={item => {
-          navigation.navigate('Conversation', {
-            user: item.name,
-            id: item.id,
-          });
-        }}
-        data={data}
-        renderItem={renderIte}
-        keyExtractor={item => item.id}
-      />
+      <View style={Styles.flatlist}>{managedContacts()}</View>
     </View>
   );
 };
