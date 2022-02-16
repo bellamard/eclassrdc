@@ -52,7 +52,7 @@ const Discussion = ({navigation}) => {
 
   const managedContacts = () => {
     setFilters(
-      ...Filters.filter(contacts => {
+      ...Contacts.filter(contacts => {
         if (search.length === 0 || search === ' ') {
           return contacts;
         } else if (`${contacts.name}`.includes(search)) {
