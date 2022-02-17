@@ -60,6 +60,8 @@
  "user": [{
     "id": 1,
     "username": "admin",
-    "password": "123456"
+    "password": "123456",
+    "classUser": "3è CG",
+    "optionUser":"DJETU MUNGOZA, BENEDICTE MBAMBI"
   }]
 }
