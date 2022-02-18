@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -51,32 +51,36 @@ const Discussion = ({navigation}) => {
   };
 
   const managedContacts = () => {
-    setFilters(
-      ...Contacts.filter(contacts => {
-        if (search.length === 0 || search === ' ') {
-          return contacts;
-        } else if (`${contacts.name}`.includes(search)) {
-          return contacts;
-        }
-        return null;
-      }).map(contact => {
-        console.log(contact);
-        return contact;
-      }),
-    );
-    return (
-      <FlatList
-        data={Filters}
-        renderItem={renderIte}
-        keyExtractor={item => item.id}
-      />
-    );
+    if (search !== '') {
+      const filter = Filters.filter(
+        contact =>
+          contact.name.toLowerCase().indexOf(search.toLowerCase()) > -1,
+      ).map(contact => contact);
+      console.log(filter);
+      return (
+        <FlatList
+          data={filter}
+          renderItem={renderIte}
+          keyExtractor={item => item.id}
+        />
+      );
+    } else {
+      return (
+        <FlatList
+          data={Contacts}
+          renderItem={renderIte}
+          keyExtractor={item => item.id}
+        />
+      );
+    }
   };
+
+  useEffect(() => {}, [search]);
 
   return (
     <View style={Styles.body}>
       <TextInput
-        onChange={setSearch}
+        onChangeText={setSearch}
         placeholder="Recherche contacts"
         value={search}
         style={Styles.input}

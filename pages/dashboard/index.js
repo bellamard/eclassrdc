@@ -18,6 +18,7 @@ import Cours from './cours';
 import Discussion from './discussion';
 import Mail from './mail';
 import Travaux from './travaux';
+import Password from './password';
 import Video from './video';
 import Lecons from './lecons';
 import menuImage from '../../images/menu.png';
@@ -30,6 +31,7 @@ import videoImage from '../../images/video.png';
 import discusionImage from '../../images/comment.png';
 import mailImageI from '../../images/email2.png';
 import powerImage from '../../images/power.png';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const myIcon = icone => (
   <Image source={icone} style={{width: 30, height: 30}} color="#607d8b" />
@@ -111,18 +113,33 @@ const ItemsTab = ({
   );
 };
 
-const Dashboard = ({navigation}) => {
+const Dashboard = ({navigation, route}) => {
   const [current, setCurrent] = useState('Accueil');
   const [lesson, setLesson] = useState({});
   const [showMenu, setShowMenu] = useState(false);
-  const [userInfo, setUserInfo] = useState({
-    name: 'Bellamard kiala',
-    classe: '4é CG',
-    option: 'Scientifique',
-  });
-  // useEffect(() => {
-  //   setshowStateProfil(!showStateProfil);
-  // }, [showStateProfil]);
+  const [retrieveUser, setRetrieveUser] = useState([]);
+
+  const [userInfo, setUserInfo] = useState([]);
+
+  useEffect(() => {
+    const getData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem('user');
+        setRetrieveUser(jsonValue);
+        const {id, username, classUser, optionUser} = JSON.parse(jsonValue);
+        setUserInfo({
+          name: username,
+          classe: classUser,
+          option: optionUser,
+        });
+        return jsonValue !== null ? JSON.parse(jsonValue) : null;
+      } catch (e) {
+        // error reading value
+        console.warn(e);
+      }
+    };
+    getData();
+  }, [retrieveUser]);
   const [showStateProfil, setshowStateProfil] = useState(true);
   const offsetValue = useRef(new Animated.Value(0)).current;
   const scaleValue = useRef(new Animated.Value(1)).current;
@@ -147,10 +164,13 @@ const Dashboard = ({navigation}) => {
         return <Mail />;
 
       case 'Mes travaux':
-        return <Travaux />;
+        return <Cours setCurrent={setCurrent} setLesson={setLesson} />;
 
       case 'Vidéo conférence':
         return <Video navigation={navigation} />;
+
+      case 'password':
+        return <Password />;
 
       case 'Lecons':
         return <Lecons lesson={lesson} navigation={navigation} />;
@@ -190,7 +210,32 @@ const Dashboard = ({navigation}) => {
             </Text>
           </View>
           <View>
-            <TouchableOpacity onPress={() => {}} style={Styles.itemProf}>
+            <TouchableOpacity
+              onPress={() => {
+                setCurrent('password');
+                Animated.timing(scaleValueProfile, {
+                  toValue: showStateProfil ? 1 : 0.88,
+                  duration: 300,
+                  useNativeDriver: true,
+                }).start();
+
+                Animated.timing(offsetValueProfile, {
+                  // YOur Random Value...
+                  toValue: showStateProfil ? 0 : 230,
+                  duration: 300,
+                  useNativeDriver: true,
+                }).start();
+
+                Animated.timing(closeButtonOffsetProfile, {
+                  // YOur Random Value...
+                  toValue: !showStateProfil ? -30 : 0,
+                  duration: 300,
+                  useNativeDriver: true,
+                }).start();
+
+                setshowStateProfil(!showStateProfil);
+              }}
+              style={Styles.itemProf}>
               <Text>Mon Compte</Text>
             </TouchableOpacity>
             <TouchableOpacity

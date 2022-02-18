@@ -60,5 +60,9 @@ const Styles = StyleSheet.create({
   signe: {
     color: '#009efb',
   },
+  checkBoxform: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
 });
 export default Styles;

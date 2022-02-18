@@ -89,6 +89,10 @@ const Styles = StyleSheet.create({
     backgroundColor: '#red',
     flexDirection: 'row',
   },
+  myClass: {
+    justifyContent: 'center',
+    textAlign: 'center',
+  },
 });
 
 export default Styles;

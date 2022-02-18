@@ -10,7 +10,10 @@ import {
   BackHandler,
   Alert,
 } from 'react-native';
+import square from '../../images/square-outline.png';
+import check from '../../images/checkbox-outline.png';
 import Styles from './style';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 const Login = ({navigation}) => {
@@ -40,21 +43,32 @@ const Login = ({navigation}) => {
   const [Remember, setRemember] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [checkMemoire, setCheckMemoire] = useState(false);
+  const [checkM, setCheckM] = useState(square);
+
+  const saveUsers = async user => {
+    try {
+      await AsyncStorage.setItem('user', JSON.stringify(user));
+    } catch (error) {
+      console.warn(error);
+    }
+  };
+
   const checkacess = () => {
     setIsLoading(true);
-    const user = UserName;
+    const user = UserName.toLowerCase();
     const pwd = Password;
     const url = `https://my-json-server.typicode.com/bellamard/eclassrdc/user?username=${user}&password=${pwd}`;
     axios
       .get(url)
       .then(res => res.data)
       .then(data => {
-        navigation.navigate('Dashboard');
         if (data.length > 0) {
+          const {id, username, classUser, optionUser} = data[0];
+          saveUsers({id, username, classUser, optionUser});
           setIsLoading(false);
-          navigation.navigate('Dashboard');
+          navigation.push('Dashboard');
         } else {
-          console.log(url);
           setUsername('');
           setPassword('');
           setIsLoading(false);
@@ -68,6 +82,10 @@ const Login = ({navigation}) => {
         setIsLoading(false);
         console.warn(err);
       });
+  };
+  const memoiryAccess = () => {
+    setCheckMemoire(!checkMemoire);
+    checkMemoire ? setCheckM(square) : setCheckM(check);
   };
 
   return (
@@ -88,7 +106,7 @@ const Login = ({navigation}) => {
                 style={Styles.input}
                 placeholder="Nom utilisateur"
                 label={'Nom utilisateur'}
-                onChange={setUsername}
+                onChangeText={setUsername}
                 value={UserName}
                 minLength={3}
               />
@@ -96,13 +114,16 @@ const Login = ({navigation}) => {
                 style={Styles.input}
                 placeholder="Mot de passe"
                 label={'Mot de passe'}
-                onChange={setPassword}
+                onChangeText={setPassword}
                 value={Password}
                 secureTextEntry={true}
                 minLength={6}
               />
               <View style={Styles.checkbox}>
-                <TouchableOpacity onPress={() => alert('test')}>
+                <TouchableOpacity
+                  onPress={() => memoiryAccess()}
+                  style={Styles.checkBoxform}>
+                  <Image source={checkM} />
                   <Text style={Styles.checkBox}>Se souvenir de moi</Text>
                 </TouchableOpacity>
               </View>

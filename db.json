@@ -45,15 +45,25 @@
         }
       ]
     }
-    
-    
-   
   ],
   "comments": [
     {
       "id": 1,
       "body": "some comment",
       "postId": 1
+    }
+  ],
+  "user": [
+    {
+      "password": "admin",
+      "id": 1
+    },
+    {
+      "username": "kiala",
+      "password": "admin",
+      "classUser": "4è CG",
+      "optionUser": "DJETU MUNGOZA, BENEDICTE MBAMBI",
+      "id": 2
     }
   ],
   "profile": {

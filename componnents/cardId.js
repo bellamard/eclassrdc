@@ -7,7 +7,7 @@ const CardId = ({Name, MyClasse}) => {
     <View style={Styles.cardId}>
       <Image source={require('../images/user.jpg')} style={Styles.Idimage} />
       <Text>{Name}</Text>
-      <Text>{MyClasse}</Text>
+      <Text style={Styles.myClass}>{MyClasse}</Text>
       <TouchableOpacity onPress={() => {}} style={Styles.buttonCard}>
         <Text style={Styles.buttonCardTitle}>Mot de Passe</Text>
       </TouchableOpacity>

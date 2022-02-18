@@ -54,7 +54,6 @@ const Conversation = ({route}) => {
       <View style={Styles.boxNametchat}>
         <Text>Chats Message: {visitor}</Text>
       </View>
-
       <SafeAreaView style={Styles.boxMessage}>
         <FlatList
           keyExtractor={item => item.id}
@@ -66,7 +65,7 @@ const Conversation = ({route}) => {
       <View style={Styles.boxInput}>
         <View style={Styles.input}>
           <TextInput
-            onChange={setMessage}
+            onChangeText={setMessage}
             value={message}
             placeholder="ecrivez votre message ici"
           />
